@@ -1,0 +1,115 @@
+<template>
+  <div>
+    <input type="text" placeholder="Some text" v-model.trim="text" />
+    <button
+      v-if="lengthCreateText && !hasItem"
+      @click="addInputPush"
+      :disabled="!text"
+    >
+      Add
+    </button>
+    <div v-else-if="hasItem">
+      <button :disabled="!text" @click="saveItem">Save</button>
+      <button @click="cancelItem">Cancel</button>
+    </div>
+    <ol>
+      <li v-for="(value, index) in list" :key="index">
+        <p :class="[value.editColor ? 'is-red ' : 'is-black']">
+          {{ value.parameters }}
+        </p>
+        <button @click="dellItem(index)">Dell</button>
+        <button @click="editColor(index)">Color</button>
+        <button @click="editTextItem(index)" v-if="!value.isEditing">
+          Edit text
+        </button>
+      </li>
+    </ol>
+  </div>
+</template>
+
+<script>
+import { mapActions, mapGetters, mapState } from "vuex";
+export default {
+  data() {
+    return {
+      text: "",
+      isEditing: false,
+      item: {},
+    };
+  },
+  computed: {
+    ...mapState({
+      list: (state) => state.todoList.list,
+    }),
+    ...mapGetters(["lengthCreateText"]),
+    hasItem() {
+      const editing = this.list.find((x) => x.isEditing);
+      return editing;
+    },
+  },
+  destroyed() {
+    this.destroyedList();
+  },
+  methods: {
+    ...mapActions([
+      "addText",
+      "destroyedList",
+      "dellItem",
+      "editColor",
+      "editTextIndex",
+      "save",
+    ]),
+    addInputPush() {
+      this.addText(this.text);
+      this.text = "";
+    },
+    editTextItem(index) {
+      this.editTextIndex(index);
+      this.list.forEach((x, y) => {
+        // eslint-disable-next-line
+        // debugger;
+        if (y === index) {
+          this.item = {
+            ...x,
+            // ...this.list[y],
+            index: y,
+          };
+          this.text = x.parameters;
+        }
+      });
+    },
+    saveItem() {
+         // eslint-disable-next-line
+        // debugger;
+      const parameters = {
+        ...this.item,
+        parameters: this.text,
+        isEditing: false,
+      };
+      this.saveAndCancel(parameters);
+    },
+    cancelItem() {
+      const parameters = {
+        ...this.item,
+        isEditing: false,
+      };
+      this.saveAndCancel(parameters);
+    },
+    saveAndCancel(parameters) {
+      this.save(parameters);
+      this.text = "";
+      this.item = {};
+    },
+  },
+};
+</script>
+
+<style>
+.is-black {
+  color: black;
+}
+.is-red {
+  color: red;
+}
+</style>
+
