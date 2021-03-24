@@ -17,19 +17,11 @@
       }}
     </ul> -->
     <button v-on:click="count++">Счётчик кликов — {{ count }}</button>
-    <br>
-    <br>
-    <button
-        @click="addNumberMethod"
-    >
-        Add To Numbers
-    </button>
-     <p > Write: {{getNumbersList}}</p>
-    <button
-        @click="addNumber"
-    >
-        Add Numbers
-    </button>
+    <br />
+    <br />
+    <button @click="addNumberMethod">Add To Numbers</button>
+    <p>Write: {{ getNumbersList }}</p>
+    <button @click="addNumber">Add Numbers</button>
     <!--<h6 v-if="isLessThenSix">1</h6>
     <h6>2</h6>
     <h6 v-if="isLessThenSix">3</h6>
@@ -59,23 +51,23 @@ export default {
       return this.numbers.filter((number) => number % 2 === 0);
     },
     bigThanThree() {
-        return this.numbers.filter((number) => number > 3);
+      return this.numbers.filter((number) => number > 3);
     },
     isLessThenSix() {
-        console.log('numbers');
-        return this.numbers.length < 6;
+      console.log("numbers");
+      return this.numbers.length < 6;
     },
     getNumbersList() {
-      return this.number.join(', ');
+      return this.number.join(", ");
     },
   },
   methods: {
-      addNumberMethod() {
-          this.numbers.push(this.count);
-      },
-      addNumber(){
-        this.number.push(Math.random()*10)
-      }
+    addNumberMethod() {
+      this.numbers.push(this.count);
+    },
+    addNumber() {
+      this.number.push(Math.random() * 10);
+    },
   },
 };
 </script>
