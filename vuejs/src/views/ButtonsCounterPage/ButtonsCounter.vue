@@ -39,6 +39,10 @@ export default {
       posts: [
         { id: 1, title: "My journey with Vue" },
         { id: 2, title: "My David with Vue" },
+        { id: 2, title: "My Armen with Vue" },
+        { id: 3, title: "My Sahak with Vue" },
+        { id: 4, title: "My Tigran with Vue" },
+        { id: 5, title: "My Narek with Vue" },
       ],
       number: [],
       numbers: [1, 2, 3, 4, 5],

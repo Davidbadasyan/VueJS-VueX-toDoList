@@ -4,7 +4,7 @@
       <button class="btn btn avelacnel">Add</button>
       <button class="btn btn hanel">Cancel</button>
     </div>
-   <h2>{{count}}</h2> 
+    <h2>{{ count }}</h2>
     <div v-if="state === 'edit'" class="add item form">
       <input
         v-model="newItem"
@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import {alertAction} from "../views/mixins/newMixinExample"
+import { alertAction } from "../views/mixins/newMixinExample";
 export default {
   mixins: [alertAction],
   data() {
@@ -51,8 +51,20 @@ export default {
           id: 124,
         },
         {
-          label: "orange",
+          label: "Mandarin",
           id: 125,
+        },
+        {
+          label: "Banana",
+          id: 121,
+        },
+        {
+          label: "orange",
+          id: 129,
+        },
+        {
+          label: "orange",
+          id: 123,
         },
       ],
     };
@@ -70,10 +82,10 @@ export default {
     },
   },
   computed: {
-    count(){
-      return this.$store.state.count
-    }
-  }
+    count() {
+      return this.$store.state.count;
+    },
+  },
 };
 </script>
 
