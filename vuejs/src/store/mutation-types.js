@@ -16,6 +16,7 @@ export const EDIT_COLOR = 'mutation/EDIT_COLOR';
 export const SAVE_DATA_EDIT = 'mutation/SAVE_DATA_EDIT';
 export const SAVE_ITEM_EDIT = 'mutation/SAVE_ITEM_EDIT';
 export const UPDATE_ITEM = 'mutation/UPDATE_ITEM';
+export const MONTHS = 'mutation/months';
 
 
 
